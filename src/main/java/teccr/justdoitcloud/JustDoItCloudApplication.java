@@ -2,6 +2,7 @@ package teccr.justdoitcloud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -37,6 +38,14 @@ public class JustDoItCloudApplication implements WebMvcConfigurer {
         registry.addInterceptor(timingInterceptor)
                 .addPathPatterns("/**");
 
+    }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/api/**")
+                .allowedOrigins("*")
+                .allowedMethods("GET", "POST", "PATCH", "DELETE", "OPTIONS")
+                .allowedHeaders("*");
     }
 
 }

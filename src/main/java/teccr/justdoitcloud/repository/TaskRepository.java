@@ -1,18 +1,14 @@
 package teccr.justdoitcloud.repository;
 
-import org.springframework.data.repository.CrudRepository;
 import teccr.justdoitcloud.data.Task;
 
 import java.util.List;
+import java.util.Optional;
 
-/**
- * Repository abstraction for task operations.
- */
-public interface TaskRepository extends CrudRepository<Task, Long> {
-
-    /**
-     * Return the list of tasks for a given username. If user doesn't exist, return empty list.
-     */
+public interface TaskRepository {
+    List<Task> findAll();
+    Optional<Task> findById(Long id);
     List<Task> findByUserId(Long userId);
-
+    Task save(Task task);
+    void deleteById(Long id);
 }
